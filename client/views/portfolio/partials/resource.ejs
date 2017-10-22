@@ -1,0 +1,13 @@
+{{!--style--}}
+{{#content "style" mode="append"}}
+<% for (var css in htmlWebpackPlugin.files.css) { %>
+<link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet"><% } %>
+{{/content}}
+
+{{!--script--}}
+{{#content "script" mode="append"}}
+<!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
+<% for (var js in htmlWebpackPlugin.files.js) { %>
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[js] %>"></script><% } %>
+<!--========== END JAVASCRIPTS ==========-->
+{{/content}}

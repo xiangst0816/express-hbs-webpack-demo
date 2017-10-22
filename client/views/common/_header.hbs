@@ -1,0 +1,46 @@
+<header class="navbar-fixed-top s-header js__header-sticky js__header-overlay s-header__shrink">
+    <!-- Navbar -->
+    <div class="s-header__navbar">
+        <div class="s-header__container">
+            <div class="s-header__navbar-row">
+                <div class="s-header__navbar-row-col">
+                    <!-- Logo -->
+                    <div class="s-header__logo">
+                        {{{block "logo"}}}
+                    </div>
+                    <!-- End Logo -->
+                </div>
+                <div class="s-header__navbar-row-col">
+                    <!-- Trigger -->
+                    <a href="javascript:void(0);" class="s-header__trigger js__trigger">
+                        <span class="s-header__trigger-icon"></span>
+                        <svg x="0rem" y="0rem" width="3.125rem" height="3.125rem" viewBox="0 0 54 54">
+                            <circle fill="transparent" stroke="#fff" stroke-width="1" cx="27" cy="27" r="25"
+                                    stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+                        </svg>
+                    </a>
+                    <!-- End Trigger -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Navbar -->
+
+    <!-- Overlay -->
+    <div class="s-header-bg-overlay js__bg-overlay">
+        <!-- Nav -->
+        <nav class="s-header__nav js__scrollbar">
+            <div class="container-fluid">
+                <!-- Menu List -->
+                {{> "common/menu"}}
+                <!-- End Menu List -->
+            </div>
+        </nav>
+        <!-- End Nav -->
+
+        <!-- Action -->
+        {{> "common/action"}}
+        <!-- End Action -->
+    </div>
+    <!-- End Overlay -->
+</header>

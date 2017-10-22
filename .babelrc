@@ -1,0 +1,22 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": "commonjs"
+      }
+    ],
+    "stage-2"
+  ],
+  "comments": false,
+  "plugins": [
+    "transform-runtime"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
+}

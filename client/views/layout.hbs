@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="HTML5 Theme Nodejs Handlerbars Express Template">
+    <meta name="description" content="Megakit">
+    <meta name="author" content="keenthemes.com">
+    <title>{{title}}</title>
+    <!-- Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet">
+
+    {{!--Vendor Styles (style here)--}}
+    {{#block "style"}}{{/block}}
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+</head>
+<body>
+{{!--IE polyfill--}}
+<!--[if lt IE 7]>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser.
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!--[if IE 8]>
+<script type="text/javascript" src="/assets/scripts/es5-shim.min.js"></script>
+<script type="text/javascript" src="/assets/scripts/es5-sham.min.js"></script>
+<![endif]-->
+
+{{!--body here--}}
+{{{this.body}}}
+
+<!-- Back To Top -->
+<a href="javascript:void(0);" class="s-back-to-top js__back-to-top"></a>
+
+{{#eq @NODE_ENV 'development'}}
+    <script src="/reload/reload.js"></script>
+{{/eq}}
+
+{{#block "script"}}{{/block}}
+
+</body>
+</html>
