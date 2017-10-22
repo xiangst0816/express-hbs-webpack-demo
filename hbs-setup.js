@@ -6,6 +6,8 @@ var config = require('./config')
 var layouts = require('handlebars-layouts')
 var helpers = require('handlebars-helpers')
 var debounce = require('lodash.debounce')
+// setup client dev mode
+var clientDev = require('./build/client-dev')
 
 module.exports = function hbsSetup (app) {
   // init handlebars-helpers
@@ -38,6 +40,7 @@ module.exports = function hbsSetup (app) {
       }, 100)
     }, function () {
       // The initial registration of partials is complete.
+      clientDev()
       console.log(`The initial registration of partials is complete`)
     })
 

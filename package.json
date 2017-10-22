@@ -21,7 +21,6 @@
     "dev": "export NODE_ENV=development && node ./build/node-dev",
     "test-webpack-base": "node ./build/webpack.base.config.js",
     "test-webpack-dev": "export NODE_ENV=development && webpack --config ./build/webpack.dev.config.js",
-    "dev-server.js": "export NODE_ENV=production && node build/dev-server.js",
     "test-webpack-prod": "export NODE_ENV=production && webpack --config ./build/webpack.prod.config.js",
     "build": ""
   },

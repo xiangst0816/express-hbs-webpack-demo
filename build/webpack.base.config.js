@@ -16,7 +16,6 @@ var webpackConfig = {
   resolve: {
     extensions: ['.js', '.json'],
     alias: {
-      client: config.clientPath,
       'app': path.join(__dirname, '../client/app.js') // for vimo module
     }
   },

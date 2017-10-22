@@ -23,16 +23,12 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
-    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
 
     // https://doc.webpack-china.org/plugins/extract-text-webpack-plugin/
     new ExtractTextPlugin({
       filename: config.assetsSubDirectory + '/css/[name].css',
       allChunks: true
     }),
-    // https://doc.webpack-china.org/plugins/commons-chunk-plugin/
 
     // common module in each pages(>3)
     new webpack.optimize.CommonsChunkPlugin({
@@ -58,6 +54,7 @@ var webpackConfig = merge(baseWebpackConfig, {
 
     // html-webpack-plugin
     ...resolveHtmlWebpackPlugins(false),
+
     new FriendlyErrorsPlugin(),
 
     // copy custom static assets
