@@ -1,5 +1,5 @@
 var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var path = require('path')
 var config = require('./config.js')
 var utils = require('./utils')
 
@@ -16,11 +16,11 @@ var webpackConfig = {
   resolve: {
     extensions: ['.js', '.json'],
     alias: {
-      client: config.clientPath
+      client: config.clientPath,
+      'app': path.join(__dirname, '../client/app.js') // for vimo module
     }
   },
   module: {
-    // noParse: /jquery/,
     rules: [
       ...utils.styleLoaders({
         sourceMap: true,
@@ -70,15 +70,6 @@ var webpackConfig = {
     ]
   },
   plugins: [
-    /**
-     * https://doc.webpack-china.org/plugins/banner-plugin/
-     * */
-    new webpack.BannerPlugin({
-      banner: 'hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]'
-    }),
-    /**
-     * https://doc.webpack-china.org/plugins/provide-plugin/
-     * */
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -87,45 +78,5 @@ var webpackConfig = {
     })
   ]
 }
-
-/**
- * prepare for HtmlWebpackPlugin plugins
- * https://github.com/kangax/html-minifier#options-quick-reference
- * */
-var htmlWebpackPluginOptions = utils.htmlWebpackPluginOptions()
-htmlWebpackPluginOptions.forEach(function (entry) {
-  var options = {
-    title: entry.moduleName,
-    filename: entry.filename,
-    template: entry.template,
-    inject: false,
-    chunks: ['manifest', 'vendor', 'common', entry.moduleName]
-  }
-
-  if (process.env.NODE_ENV === 'production') {
-    options.minify = {
-      caseSensitive: true,
-      collapseBooleanAttributes: true,
-      collapseInlineTagWhitespace: true,
-      collapseWhitespace: true,
-      minifyJS: true,
-      minifyCSS: true,
-      minifyURLs: true,
-      removeAttributeQuotes: true,
-      removeComments: true,
-      removeEmptyAttributes: true,
-      removeOptionalTags: true,
-      removeRedundantAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      sortAttributes: true,
-      sortClassName: true,
-      useShortDoctype: true
-    }
-  }
-
-  // https://github.com/jantimon/html-webpack-plugin
-  webpackConfig.plugins.push(new HtmlWebpackPlugin(options))
-})
 
 module.exports = webpackConfig

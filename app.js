@@ -6,14 +6,17 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var config = require('./config')
 var hbsSetup = require('./hbs-setup')
+var clientDev = require('./build/client-dev')
 var index = require('./routes/index')
 var users = require('./routes/users')
 var app = express()
 // view engine setup
 hbsSetup(app)
+// setup client dev mode
+clientDev()
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')))
+// app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))

@@ -1,29 +1,29 @@
 var rootConfig = require('../config')
-var path = require('path')
-var merge = require('merge')
-module.exports = merge(rootConfig, {
+let assetsRoot = rootConfig.assetsRoot
+let viewsPath = rootConfig.viewsPath
+let clientPath = rootConfig.clientPath
+module.exports = {
   assetsSubDirectory: '',
+  assetsRoot: assetsRoot,
+  clientPath: clientPath,
+  viewsPath: viewsPath,
   // commonsChunkName: ['vendor', 'manifest'],
   dev: {
-    env: {
-      NODE_ENV: '"development"'
-    },
-    port: 8085,
+    env: require('./dev.env'),
+    port: 8000,
     autoOpenBrowser: true,
     // html资源中的路径, 例如: "https://cdn.example.com/assets/"
-    assetsPublicPath: '/',
+    assetsPublicPath: '',
     proxyTable: {},
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
-    cssSourceMap: false
+    cssSourceMap: true
   },
   build: {
-    env: {
-      NODE_ENV: '"production"'
-    },
+    env: require('./prod.env'),
     assetsPublicPath: '',
     productionSourceMap: false,
     // Gzip off by default as many popular static hosts such as
@@ -36,6 +36,6 @@ module.exports = merge(rootConfig, {
     // View the bundle analyzer report after build finishes:
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
-    bundleAnalyzerReport: process.env.npm_config_report
+    bundleAnalyzerReport: false
   }
-})
+}

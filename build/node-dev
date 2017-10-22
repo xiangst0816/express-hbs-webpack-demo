@@ -6,7 +6,7 @@
  * node-dev will hard(not soft) restart the server
  * 2. open browser on free port, default is 8000
  * */
-var opn = require('opn')
+// var opn = require('opn')
 var portfinder = require('portfinder')
 var {exec} = require('shelljs')
 
@@ -17,7 +17,7 @@ portfinder.getPortPromise()
   console.log(`---------------------------------------------`)
   process.env.PORT = port
 
-  opn('http://localhost:' + port)
+  // opn('http://localhost:' + port)
 
   exec('node-dev ./bin/www')
 })

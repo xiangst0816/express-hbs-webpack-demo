@@ -1,32 +1,39 @@
 var webpack = require('webpack')
 var path = require('path')
-var webpackMerge = require('webpack-merge')
-var webpackBaseConfig = require('./webpack.base.config.js')
+var utils = require('./utils')
+var merge = require('webpack-merge')
+var baseWebpackConfig = require('./webpack.base.config.js')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var config = require('./config.js')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
-var webpackConfig = {
-  // https://doc.webpack-china.org/configuration/output/
+var resolveHtmlWebpackPlugins = require('./resolveHtmlWebpackPlugins')
+// var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+
+var webpackConfig = merge(baseWebpackConfig, {
   output: {
-    filename: 'js/[name].[chunkhash:9].js',
+    filename: utils.assetsPath('js/[name].[chunkhash:9].js'),
+    // chunkFilename: utils.assetsPath('js/[id].[chunkhash:9].js'),
     path: config.assetsRoot,
     // html资源中的路径, 例如: "https://cdn.example.com/assets/"
     publicPath: config.build.assetsPublicPath
   },
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
-    // https://doc.webpack-china.org/plugins/define-plugin/
+
     new webpack.DefinePlugin({
       'process.env': config.build.env
     }),
 
-    // https://doc.webpack-china.org/plugins/extract-text-webpack-plugin/
+    // extract css into its own file
     new ExtractTextPlugin({
       filename: config.assetsSubDirectory + '/css/[name].[contenthash:9].css',
       allChunks: true
     }),
 
-    // https://doc.webpack-china.org/plugins/commons-chunk-plugin/
+    // Compress extracted CSS. We are using this plugin so that possible
+    // duplicated CSS from different components can be deduped.
+    // new OptimizeCSSPlugin(),
+
     // common module in each pages(>3)
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
@@ -56,18 +63,53 @@ var webpackConfig = {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true
+      },
+      sourceMap: true
+    }),
+
+    // html-webpack-plugin
+    ...resolveHtmlWebpackPlugins(true)
   ],
 
   // https://doc.webpack-china.org/configuration/devtool/
-  devtool: 'source-map'
+  devtool: config.build.productionSourceMap ? 'source-map' : false
+})
+
+if (config.build.productionGzip) {
+  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+
+  webpackConfig.plugins.push(
+    new CompressionWebpackPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: new RegExp(
+        '\\.(' +
+        config.build.productionGzipExtensions.join('|') +
+        ')$'
+      ),
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  )
 }
 
-if (process.env.NODE_ENV === 'production') {
-  // https://doc.webpack-china.org/plugins/uglifyjs-webpack-plugin/
-  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    sourceMap: true
-  }))
+if (config.build.bundleAnalyzerReport) {
+  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
-module.exports = webpackMerge(webpackBaseConfig, webpackConfig)
+module.exports = webpackConfig

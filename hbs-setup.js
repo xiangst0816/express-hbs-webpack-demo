@@ -33,7 +33,6 @@ module.exports = function hbsSetup (app) {
     hbsutils.registerWatchedPartials(config.viewsPath, {
       onchange: debounce(function () {
         // 增加防抖函数, 避免集中多次触发
-        // Partials has changed!
         console.log(`Partials has changed!`)
         reloadServer && reloadServer.reload()
       }, 100)
@@ -42,14 +41,14 @@ module.exports = function hbsSetup (app) {
       console.log(`The initial registration of partials is complete`)
     })
 
-    setTimeout(function () {
-      console.log('\n')
-      console.log('已注册的 Handlerbars Partials 名称:')
-      console.log(Object.keys(hbs.handlebars.partials))
-      console.log('\n')
-      console.log('已注册的 Handlerbars helpers 名称:')
-      console.log(Object.keys(hbs.handlebars.helpers))
-    }, 400)
+    // setTimeout(function () {
+    //   console.log('\n')
+    //   console.log('已注册的 Handlerbars Partials 名称:')
+    //   console.log(Object.keys(hbs.handlebars.partials))
+    //   console.log('\n')
+    //   console.log('已注册的 Handlerbars helpers 名称:')
+    //   console.log(Object.keys(hbs.handlebars.helpers))
+    // }, 400)
   } else {
     // register partials
     hbs.registerPartials(config.viewsPath)
