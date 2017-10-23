@@ -22,18 +22,13 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    {{!--IE polyfill--}}
+    {{> "common/ie8_polyfill"}}
 </head>
 <body>
 {{!--IE polyfill--}}
-<!--[if lt IE 7]>
-<p class="browsehappy">
-    You are using an <strong>outdated</strong> browser.
-    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-<!--[if IE 8]>
-<script type="text/javascript" src="/assets/scripts/es5-shim.min.js"></script>
-<script type="text/javascript" src="/assets/scripts/es5-sham.min.js"></script>
-<![endif]-->
+{{> "common/lt_ie7_notice"}}
 
 {{!--body here--}}
 {{{this.body}}}
