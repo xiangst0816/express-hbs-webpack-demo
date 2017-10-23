@@ -22,7 +22,22 @@
     "test-webpack-base": "node ./build/webpack.base.config.js",
     "test-webpack-dev": "export NODE_ENV=development && webpack --config ./build/webpack.dev.config.js",
     "test-webpack-prod": "export NODE_ENV=production && webpack --config ./build/webpack.prod.config.js",
+    "lint": "eslint --ext .js client/views client/assets/js",
+    "lint:fix": "npm run lint -- --fix",
+    "precommit": "lint-staged",
+    "commitmsg": "validate-commit-msg",
     "build": ""
+  },
+  "lint-staged": {
+    "{client/views, client/assets/js}/**/*.js": [
+      "npm run lint"
+    ]
+  },
+  "config": {
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "helpMessage": "We use Conventional Commits, for more information here: https://conventionalcommits.org/"
+    }
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -75,6 +90,7 @@
     "leaflet": "^1.2.0",
     "less": "2.7.2",
     "less-loader": "4.0.5",
+    "lint-staged": "^4.3.0",
     "lodash.debounce": "^4.0.8",
     "magnific-popup": "^1.1.0",
     "merge": "^1.2.0",
@@ -91,6 +107,7 @@
     "swiper": "^4.0.2",
     "themify-icons": "^1.0.0",
     "url-loader": "^0.6.2",
+    "validate-commit-msg": "^2.14.0",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-merge": "^2.6.1",
