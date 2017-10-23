@@ -93,7 +93,7 @@ export default function () {
    * */
   var smoothScroll = function () {
     $('a[href*="#js__scroll-to-"]:not([href="#js__scroll-to-"])').on('click', function () {
-      if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
         var $hashElement = $(this.hash)
 
         if (!$hashElement.length) {

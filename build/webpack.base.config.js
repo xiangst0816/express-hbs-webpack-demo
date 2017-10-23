@@ -25,15 +25,16 @@ var webpackConfig = {
         sourceMap: true,
         extract: true
       }),
-      // {
-      //   test: /\.js$/,
-      //   loader: 'eslint-loader',
-      //   enforce: 'pre',
-      //   include: config.clientPath,
-      //   options: {
-      //     formatter: require('eslint-friendly-formatter')
-      //   }
-      // },
+      {
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: config.clientPath,
+        exclude: /vendor/,
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
