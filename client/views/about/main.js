@@ -1,5 +1,5 @@
 // common
-import '../../app'
+import 'app'
 // page vendor
 import wow from '../../assets/js/wow'
 // page style

@@ -1,5 +1,5 @@
 // common
-import '../../app'
+import 'app'
 // page vendor
 import swiper from '../../assets/js/swiper'
 import wow from '../../assets/js/wow'

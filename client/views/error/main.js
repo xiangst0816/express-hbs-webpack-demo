@@ -1,5 +1,5 @@
 // common
-import '../../app'
+import 'app'
 // page style
 import './style.less'
 

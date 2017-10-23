@@ -1,5 +1,5 @@
 // common
-import '../../app'
+import 'app'
 // page vendor
 import parallax from '../../assets/js/parallax'
 import faq from '../../assets/js/faq'
