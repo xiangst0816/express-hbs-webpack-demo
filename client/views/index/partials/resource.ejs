@@ -1,12 +1,16 @@
 {{!--style--}}
 {{#content "style" mode="append"}}
+<link href="https://cdn.bootcss.com/leaflet/1.2.0/leaflet.css" rel="stylesheet">
 <% for (var css in htmlWebpackPlugin.files.css) { %>
+<!--leaflet style-->
 <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet"><% } %>
 {{/content}}
 
 {{!--script--}}
 {{#content "script" mode="append"}}
 <!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
+<!--leaflet script-->
+<script src="https://cdn.bootcss.com/leaflet/1.2.0/leaflet.js"></script>
 <% for (var js in htmlWebpackPlugin.files.js) { %>
 <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[js] %>"></script><% } %>
 <!--========== END JAVASCRIPTS ==========-->

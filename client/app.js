@@ -10,18 +10,11 @@
  * */
 import './assets/css/style.css'
 import './assets/css/global.css'
-import 'animate.css'
 import './assets/vendor/themify/themify-icons.css'
-/**
- * Customer Styles
- * */
-import $ from 'jquery'
-import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap-theme.css'
-import 'bootstrap/dist/css/bootstrap.css'
 // global
 import global from './assets/js/global'
 
 $(function () {
+  // global
   global()
 })

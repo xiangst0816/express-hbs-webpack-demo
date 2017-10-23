@@ -55,16 +55,6 @@ var webpackConfig = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      },
-      {
-        test: require.resolve('jquery'),
-        use: [{
-          loader: 'expose-loader',
-          options: 'jQuery'
-        }, {
-          loader: 'expose-loader',
-          options: '$'
-        }]
       }
     ]
   },
@@ -75,7 +65,12 @@ var webpackConfig = {
       'window.$': 'jquery',
       'window.jQuery': 'jquery'
     })
-  ]
+  ],
+  externals: {
+    jquery: 'jQuery',
+    swiper: 'Swiper',
+    leaflet: 'L'
+  }
 }
 
 module.exports = webpackConfig

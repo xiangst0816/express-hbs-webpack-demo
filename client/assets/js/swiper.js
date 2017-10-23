@@ -2,26 +2,19 @@
 /**
  * init Swiper
  * */
-import Swiper from 'swiper/dist/js/swiper.min'
-import 'swiper/dist/css/swiper.min.css'
+import Swiper from 'swiper'
 
 export default function () {
-  // index
   new Swiper('.js__swiper-one-item', {
-    navigation: {
-      nextEl: '.js__swiper-btn--next',
-      prevEl: '.js__swiper-btn--prev'
-    },
+    nextButton: '.js__swiper-btn--next',
+    prevButton: '.js__swiper-btn--prev',
     speed: 1e3,
     autoplay: 7e3,
     loop: !0
   })
-  // clinic
   new Swiper('.js__swiper-slider', {
-    pagination: {
-      el: '.js__swiper-pagination',
-      clickable: true
-    },
+    pagination: '.js__swiper-pagination',
+    paginationClickable: !0,
     speed: 1e3,
     autoplay: 7e3,
     loop: !0
@@ -39,10 +32,8 @@ export default function () {
     }
   })
   new Swiper('.js__swiper-news', {
-    pagination: {
-      el: '.js__swiper-pagination',
-      clickable: true
-    },
+    pagination: '.js__swiper-pagination',
+    paginationClickable: !0,
     slidesPerView: 4,
     spaceBetween: 30,
     loop: !0,
@@ -55,15 +46,11 @@ export default function () {
     }
   })
   new Swiper('.js__swiper-testimonials', {
-    pagination: {
-      el: '.js__swiper-fraction',
-      type: 'fraction',
-      clickable: true
-    },
-    navigation: {
-      nextEl: '.js__swiper-btn--next',
-      prevEl: '.js__swiper-btn--prev'
-    },
+    pagination: '.js__swiper-fraction',
+    paginationType: 'fraction',
+    paginationClickable: !0,
+    nextButton: '.js__swiper-btn--next',
+    prevButton: '.js__swiper-btn--prev',
     slidesPerView: 1,
     speed: 1e3,
     autoplay: 7e3,

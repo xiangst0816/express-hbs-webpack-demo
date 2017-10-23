@@ -11,6 +11,10 @@
     <title>{{title}}</title>
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/Swiper/3.3.1/css/swiper.min.css" rel="stylesheet">
 
     {{!--Vendor Styles (style here)--}}
     {{#block "style"}}{{/block}}
@@ -40,6 +44,11 @@
 {{#eq @NODE_ENV 'development'}}
     <script src="/reload/reload.js"></script>
 {{/eq}}
+
+<!-- vendor -->
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
 
 {{#block "script"}}{{/block}}
 

@@ -22,9 +22,9 @@ app.use(express.static(config.assetsRoot))
 app.use('/', index)
 app.use('/users', users)
 
-app.use(logger('dev'))
+// app.use(logger('dev'))
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')))
+// app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
