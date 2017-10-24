@@ -6,25 +6,25 @@
  * node-dev will hard(not soft) restart the server
  * 2. open browser on free port, default is 8000
  * */
-var opn = require('opn')
+
 var portfinder = require('portfinder')
 var {exec} = require('shelljs')
+var config = require('./config')
 
 portfinder.getPortPromise().then((port) => {
-  console.log(`---------------------------------------------`)
-  console.log(` Server will start at: http://localhost:${port}`)
-  console.log(`---------------------------------------------`)
-  process.env.PORT = port
-
-  opn('http://localhost:' + port)
-
-  exec('node-dev ./bin/www')
+  startDevServer(port)
 }).catch(function (err) {
   if (err) {
     console.log(err)
     return
   }
-  //
-  // Could not get a free port, `err` contains the reason.
-  //
+  startDevServer(config.dev.port)
 })
+
+function startDevServer (port) {
+  process.env.PORT = port
+  console.log(`---------------------------------------------`)
+  console.log(` Server will start at: http://localhost:${port}`)
+  console.log(`---------------------------------------------`)
+  exec('node-dev ./bin/www')
+}

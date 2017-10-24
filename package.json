@@ -18,14 +18,13 @@
   ],
   "scripts": {
     "start": "export PORT=3000 && node ./bin/www",
+    "node:dev": "export NODE_ENV=node-development && node ./build/node-dev",
     "node-client:dev": "export NODE_ENV=development && node ./build/node-dev",
     "client:build": "export NODE_ENV=production && webpack --config ./build/webpack.prod.config.js",
     "lint": "eslint --ext .js client/views client/assets/js",
     "lint:fix": "npm run lint -- --fix",
     "precommit": "lint-staged",
-    "commitmsg": "validate-commit-msg",
-    "test-webpack-base": "node ./build/webpack.base.config.js",
-    "test-webpack-dev": "export NODE_ENV=development && webpack --config ./build/webpack.dev.config.js"
+    "commitmsg": "validate-commit-msg"
   },
   "lint-staged": {
     "{client/views, client/assets/js}/**/*.js": [

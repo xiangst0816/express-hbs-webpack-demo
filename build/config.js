@@ -7,14 +7,12 @@ module.exports = {
   assetsRoot: assetsRoot,
   clientPath: clientPath,
   viewsPath: viewsPath,
-  // commonsChunkName: ['vendor', 'manifest'],
   dev: {
     env: require('./dev.env'),
     port: 8000,
     autoOpenBrowser: true,
     // html资源中的路径, 例如: "https://cdn.example.com/assets/"
     assetsPublicPath: '',
-    proxyTable: {},
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)

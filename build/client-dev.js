@@ -15,7 +15,7 @@ module.exports = function clientDev () {
       }
     })
     webpack(webpackConfig, function () {
-      // console.log(`client files has changed!`)
+      console.log('webpack pack success!')
     })
   }
 }
