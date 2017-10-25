@@ -14,14 +14,21 @@
 
 ### 前端范围
 
-- 每个页面对应的js+css+img+font等资源，不包括hbs文件。
-- 前端使用webpack做模块管理与工程构建
-- client目录中全部文件（除去hbs模板）
+- client文件夹 -> js/css/img/resource.ejs(resource.hbs)
+- webpack管理资源依赖，已js为入口，es6语法，页面名称由路径规定，管理当前页面的资源
+- 资源link/style通过resource.ejs模板转化为resource.hbs文件，给view-hbs使用
+- 使用handlebars-helpers外部helper
+- 使用handlebars-layouts布局helper，内容转移(block/content)/继承(extend)/嵌套(embed)等helper
+- 页面资源(不包括hbs文件)最终会打包到public中(hash处理)
 
 
 ### 后端范围
 
-- 除去前端部分全部为后端范围
+- nodejs/express/hbs/route/hbs-helper/hbs-partials/views中全部hbs
+- 服务端JS代码修改会重新启动服务器(node-dev)
+- 服务器重启会刷新浏览器(reload)
+- views中hbs-partials修改会重新再注册，且刷新浏览器(hbs-utils)
+- hbs模板归属与node管理
 
 
 ### 脑补一张图
@@ -35,6 +42,9 @@
 1. 前端通过webpack的插件```HTMLHtmlWebpackPlugin```以resource.ejs为模板嵌入Style和Script资源, 生成```resource.hbs```文件
 2. 此文件变更后通知```hbs-util```插件更新Partials
 3. 更新完毕```reload```浏览器.
+
+
+
 
 ## 目录结构及约定说明
 
@@ -78,8 +88,17 @@
 - 页面入口js，约定只能是index.js或者main.js，不要更改位置
 - client/app.js文件是页面公共脚本，各个页面的单独按需引入
 
-## 命令说明
+### 资源分割约定
 
+
+- vendor: 外部依赖，从commons提取的、从npm安装的模块
+- commons: 内部公共，且>3此引用的
+- manifest: 依赖映射
+- page1: 页面专属
+- page2: 页面专属
+
+
+## 命令说明
 
 
 ### npm run node:dev

@@ -1,2 +1,87 @@
-# express-hbs-webpack-demo
-a express+hbs+webpack demo for server side renderer, used for simple website such as blog/news/mall/official. SEO friendly!
+# Express+Handlebars+Webpack
+
+该项目是对Nodejs中途岛模型的一个实现，使用的是: **Nodejs + Handlerbars + Express + Webpack**技术组合。为了完整测试这个模型，项目中使用了一个官网模板进行构建， 个人比较喜欢这个UI风格，你可以体验下!
+
+> 使用的都是很成熟常见的技术，没有造轮子。
+
+## 解决的问题
+
+前后端严重耦合造成开发效率无法提高，通过 **RESTful API + Ajax** 前端渲染又无法优雅的兼顾SEO，在这个进退两难的境地，Nodejs的中途岛模型指明了一个解决方向。
+
+使用Nodejs作为中间层，由前端通过Nodejs完成模板+数据的组合，剩余的通过 **RESTful API** 对接纯后端服务，这样做的好处是:
+
+- 思路清晰明了，中间没有第三方参与，
+- 完全解耦前后端。
+- 开发力度均匀
+- 没有前后端沟通问题
+- 维护成本低
+- 关注点分离，专业的人做专业的事
+
+但是这套方案需要技能较高的前端团队，不过可以慢慢培养。
+
+
+
+##  Nodejs中途岛模型
+
+具体的请参考这篇文章：[美团酒店Node全栈开发实践](https://tech.meituan.com/node-fullstack-development-practice.html)， 我就不班门弄斧了。
+
+## 适用场景
+
+- 官网
+- 商超
+- 博客
+- 导航
+- 重度SEO场景
+
+## 如何开始
+
+开始之前先看```./docs/dev-mode.md``` 和 ```./docs/hbs.md``` 两篇文章：
+
+- ```dev-mode```：介绍了开发模型
+- ```hbs```：介绍了Handlerbars使用
+
+**如果是第一次想开始快速预览效果：**
+
+```bash
+# 安装依赖
+$ npm install
+
+# 完整构建
+$ npm run client:build
+
+# 开启服务
+$ npm run start
+
+# 开启浏览器浏览：http://localhost:3000
+```
+
+## 问题点
+
+### 1. Webpack的作用
+
+作为模块打包工具，也是自动化构建工具，具有开发和发布两个模式，并且都做好了各类资源优化。此外，它能提取公共模块，将页面的资源按需加载，不存在```AllLoaded```的情况。如果要上```Pjax```技术，请把它简单的当做Tab类似的功能使用。
+
+
+### 2. 包含Nginx、MySql/Mongodb吗？
+
+不包括， 这个项目只是前端展示层的构建（经典MVC），前面的Nginx和后面的数据获取（API、RPC）、持久化需要根据项目添加。
+
+### 3. 前端项目支持ES6吗？
+
+支持，使用Babel构建。
+
+### 4. 样式预处理器吗？
+
+支持Less、Scss/Sass、Postcss、Stylus、Styl，使用前需要检查对应的loader是否安装。
+
+### 5. 使用这么漂亮的官网模板付钱了吗？
+
+没，这个是我在网上看到的网站，没有源码，我是一个页面一个页面通过：“显示网页源码”粘贴下来的，如果侵权请告知我，我隐掉。。
+
+### 6. 没有使用webpack的hotload插件，代码修改是否很慢才刷新页面？
+
+还行，能在800ms左右完成构建并刷新，这个和使用hotload插件的项目区别不大，另外，通用的插件我都是在```layout.hbs```引入CDN解决的，真正分析打包的代码不多。
+
+## 最后
+
+希望以上帮到你，如果有问题可提issue。
