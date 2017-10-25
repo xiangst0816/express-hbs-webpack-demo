@@ -2,14 +2,18 @@
  * init hbs view engine
  * */
 var hbs = require('hbs')
-var config = require('../config')
+var baseConfig = require('../config')
+var config = require('./config')
 var layouts = require('handlebars-layouts')
 var helpers = require('handlebars-helpers')
 var debounce = require('lodash.debounce')
+var merge = require('merge')
 // setup client dev mode
 var clientDev = require('./client-dev')
 var isFirstRefresh = false
 var opn = require('opn')
+
+config = merge(baseConfig, config)
 
 module.exports = function hbsSetup (app) {
   // init handlebars-helpers

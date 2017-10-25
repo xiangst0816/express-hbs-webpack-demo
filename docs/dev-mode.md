@@ -30,6 +30,12 @@
 前端 <--> (resource.ejs -> resource.hbs) <--> 后端+hbs
 ```
 
+**过程说明**
+
+1. 前端通过webpack的插件```HTMLHtmlWebpackPlugin```以resource.ejs为模板嵌入Style和Script资源, 生成```resource.hbs```文件
+2. 此文件变更后通知```hbs-util```插件更新Partials
+3. 更新完毕```reload```浏览器.
+
 ## 目录结构及约定说明
 
 ### 目录
@@ -51,7 +57,7 @@
 |   |   |   |── partials
 |   |   |   |   |── content.hbs    // 页面Partials
 |   |   |   |   |── xxxxxxxx.hbs   // 其余页面Partials
-|   |   |   |   |── resource.ejs   // webpack的HtmlWebpackPlugin插件需要这个模板
+|   |   |   |   |── resource.ejs   // webpack的 HTMLHtmlWebpackPlugin 插件需要这个模板
 |   |   |   |   └── resource.hbs   // 最终生成的hbs资源片段
 |   |   |   |── index.hbs    // 页面主结构
 |   |   |   |── main.js      // 页面入口js，约定只能是index.js或者main.js
@@ -139,11 +145,11 @@ client/views/pages/partials/resource.hbs
 
 ### 1. npm run node-client:dev
 
-这个模式下，不建议同时修改node环境和前端环境
+这个模式下，不建议修改node环境, 因为node端代码会重启服务执行webpack构建并新开启浏览器, 特殊情况除外.
 
 ### 2. 为何不是hot-reload，而是硬写入文件后刷新
 
-因为后端需要最终生成的```resource.hbs```文件，hbs文件生成后更新注册的Patrials，之后才能属性浏览器获得正确显示。而hot-reload是在内存中完成资源更新，和现在情况不匹配。
+因为后端需要最终生成的```resource.hbs```文件，hbs文件生成后更新注册的Partials，之后才能属性浏览器获得正确显示。而hot-reload是在内存中完成资源更新，和现在情况不匹配。
 
 ### 3. 第一次开始如何快速预览效果
 
