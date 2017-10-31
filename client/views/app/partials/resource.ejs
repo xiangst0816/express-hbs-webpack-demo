@@ -7,6 +7,8 @@
 {{!--script--}}
 {{#content "script" mode="append"}}
 <!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
+<!--inline manifest-->
+<%=htmlWebpackPlugin.files.webpackManifest%>
 <% for (var js in htmlWebpackPlugin.files.js) { %>
 <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[js] %>"></script><% } %>
 <!--========== END JAVASCRIPTS ==========-->

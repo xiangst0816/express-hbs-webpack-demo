@@ -25,7 +25,6 @@ $(function () {
 
   // page
   console.log('index')
-  console.log('index')
 })
 
 function initMap () {

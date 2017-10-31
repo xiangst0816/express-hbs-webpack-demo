@@ -53,7 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
 
     // html-webpack-plugin
-    ...resolveHtmlWebpackPlugins(false),
+    ...resolveHtmlWebpackPlugins(),
 
     new FriendlyErrorsPlugin(),
 

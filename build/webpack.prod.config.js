@@ -7,17 +7,18 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var config = require('./config.js')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var resolveHtmlWebpackPlugins = require('./resolveHtmlWebpackPlugins')
-// var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
 
 var webpackConfig = merge(baseWebpackConfig, {
   output: {
-    filename: utils.assetsPath('js/[name].[chunkhash:9].js'),
-    // chunkFilename: utils.assetsPath('js/[id].[chunkhash:9].js'),
+    filename: utils.assetsPath('js/[name].[chunkhash].js'),
     path: config.assetsRoot,
     // html资源中的路径, 例如: "https://cdn.example.com/assets/"
     publicPath: config.build.assetsPublicPath
   },
   plugins: [
+    new webpack.HashedModuleIdsPlugin(),
+
     new webpack.optimize.ModuleConcatenationPlugin(),
 
     new webpack.DefinePlugin({
@@ -26,13 +27,9 @@ var webpackConfig = merge(baseWebpackConfig, {
 
     // extract css into its own file
     new ExtractTextPlugin({
-      filename: config.assetsSubDirectory + '/css/[name].[contenthash:9].css',
+      filename: config.assetsSubDirectory + '/css/[name].[contenthash].css',
       allChunks: true
     }),
-
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
-    // new OptimizeCSSPlugin(),
 
     // common module in each pages(>3)
     new webpack.optimize.CommonsChunkPlugin({
@@ -82,7 +79,12 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
 
     // html-webpack-plugin
-    ...resolveHtmlWebpackPlugins(true)
+    ...resolveHtmlWebpackPlugins(),
+
+    // manifest inline in html file
+    new InlineManifestWebpackPlugin({
+      name: 'webpackManifest'
+    })
   ],
 
   // https://doc.webpack-china.org/configuration/devtool/
