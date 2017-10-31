@@ -8,7 +8,6 @@ var config = require('./config.js')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var resolveHtmlWebpackPlugins = require('./resolveHtmlWebpackPlugins')
 var InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
-
 var webpackConfig = merge(baseWebpackConfig, {
   output: {
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
